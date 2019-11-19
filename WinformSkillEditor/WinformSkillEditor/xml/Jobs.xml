@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Jobs>
+  <JobType name="전사">
+    검사
+    <SubJob name="히어로"><Stage num="1">검사</Stage></SubJob></JobType>
+  <JobType name="마법사">
+    매지션
+    
+  <SubJob name="아크메이지(썬,콜)"><Stage num="1">매지션</Stage></SubJob></JobType>
+  <JobType name="궁수">
+    아처
+    
+  </JobType>
+  <JobType name="도적">
+    로그
+    
+  </JobType>
+  <JobType name="해적">
+    해적
+    
+  </JobType>
+</Jobs>
