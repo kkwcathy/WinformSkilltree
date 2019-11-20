@@ -23,8 +23,7 @@
     <SubJob name="아크메이지(썬,콜)">
       <Stage num="1">매지션</Stage>
       <Stage num="2">위자드(얼음, 번개)</Stage>
-      <Stage num="3">
-      </Stage>
+      <Stage num="3">메이지(얼음, 번개)</Stage>
       <Stage num="4">
       </Stage>
     </SubJob>

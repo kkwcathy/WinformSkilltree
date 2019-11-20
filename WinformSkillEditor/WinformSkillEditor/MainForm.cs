@@ -23,6 +23,8 @@ namespace WinformSkillEditor
 		{
 			ComboBox comboBox = (ComboBox)sender;
 
+			label5.Text = " ";
+
 			JobSelectView.Enabled = true;
 			btnAddJob.Enabled = true;
 			InputNewJob.Enabled = true;
@@ -149,12 +151,6 @@ namespace WinformSkillEditor
 
 		}
 
-		// 사용 안함
-		private void StageSelectView_NotSelected(object sender, EventArgs e)
-		{
-			//CurStageText.Text = "";
-		}
-
 		private void btnStageModify_Click(object sender, EventArgs e)
 		{
 			
@@ -181,7 +177,50 @@ namespace WinformSkillEditor
 			btnStageModify.Enabled = false;
 			StageTextBox.Enabled = false;
 		}
-		
-	}
 
+
+		/////////////////////////////분리예정: 스킬편집 페이지
+
+
+		//빼야함
+		private void tabPage2_Click(object sender, EventArgs e)
+		{
+			JobComboBox1.Enabled = false;
+			StageComboBox1.Enabled = false;
+		}
+
+		private void TypeComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			JobXmlManager.SetCurJobTypeNode(TypeComboBox1.SelectedItem.ToString());
+
+			List<string> itemList = JobXmlManager.GetSubJobData();
+
+			JobComboBox1.Items.Clear();
+
+			foreach(var i in itemList)
+			{
+				JobComboBox1.Items.Add(i);
+			}
+
+			JobComboBox1.Enabled = true;
+		}
+
+		private void JobComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			JobXmlManager.SetCurSubJobNode(JobComboBox1.SelectedItem.ToString());
+
+			string[] itemArray = JobXmlManager.GetStageData();
+
+			StageComboBox1.Items.Clear();
+
+			foreach (var i in itemArray)
+			{
+				if (i.Length == 0) { break; }
+
+				StageComboBox1.Items.Add(i);
+			}
+
+			StageComboBox1.Enabled = true;
+		}
+	}
 }
