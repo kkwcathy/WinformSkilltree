@@ -4,12 +4,9 @@
     <firstStage>검사</firstStage>
     <SubJob name="히어로">
       <Stage num="1">검사</Stage>
-      <Stage num="2">
-      </Stage>
-      <Stage num="3">
-      </Stage>
-      <Stage num="4">
-      </Stage>
+      <Stage num="2">파이터</Stage>
+      <Stage num="3">크루세이더</Stage>
+      <Stage num="4">히어로</Stage>
     </SubJob>
     <SubJob name="팔라딘">
       <Stage num="1">검사</Stage>
@@ -20,21 +17,12 @@
       <Stage num="4">
       </Stage>
     </SubJob>
-    <SubJob name="아란">
-      <Stage num="1">아란</Stage>
-      <Stage num="2">아란</Stage>
-      <Stage num="3">
-      </Stage>
-      <Stage num="4">
-      </Stage>
-    </SubJob>
   </JobType>
   <JobType name="마법사">
     <firstStage>매지션</firstStage>
     <SubJob name="아크메이지(썬,콜)">
       <Stage num="1">매지션</Stage>
-      <Stage num="2">
-      </Stage>
+      <Stage num="2">위자드(얼음, 번개)</Stage>
       <Stage num="3">
       </Stage>
       <Stage num="4">

@@ -11,6 +11,8 @@ namespace WinformSkillEditor
 	{
 		static void Main(string[] args)
 		{
+			JobXmlManager.Init();
+
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 			Application.Run(new MainForm());
