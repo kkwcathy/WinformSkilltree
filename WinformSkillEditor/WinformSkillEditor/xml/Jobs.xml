@@ -1,22 +1,70 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Jobs>
   <JobType name="전사">
-    검사
-    <SubJob name="히어로"><Stage num="1">검사</Stage></SubJob></JobType>
+    <firstStage>검사</firstStage>
+    <SubJob name="히어로">
+      <Stage num="1">검사</Stage>
+      <Stage num="2">
+      </Stage>
+      <Stage num="3">
+      </Stage>
+      <Stage num="4">
+      </Stage>
+    </SubJob>
+    <SubJob name="팔라딘">
+      <Stage num="1">검사</Stage>
+      <Stage num="2">
+      </Stage>
+      <Stage num="3">
+      </Stage>
+      <Stage num="4">
+      </Stage>
+    </SubJob>
+    <SubJob name="아란">
+      <Stage num="1">아란</Stage>
+      <Stage num="2">아란</Stage>
+      <Stage num="3">
+      </Stage>
+      <Stage num="4">
+      </Stage>
+    </SubJob>
+  </JobType>
   <JobType name="마법사">
-    매지션
-    
-  <SubJob name="아크메이지(썬,콜)"><Stage num="1">매지션</Stage></SubJob></JobType>
+    <firstStage>매지션</firstStage>
+    <SubJob name="아크메이지(썬,콜)">
+      <Stage num="1">매지션</Stage>
+      <Stage num="2">
+      </Stage>
+      <Stage num="3">
+      </Stage>
+      <Stage num="4">
+      </Stage>
+    </SubJob>
+  </JobType>
   <JobType name="궁수">
-    아처
-    
+    <firstStage>아처</firstStage>
+    <SubJob name="보우마스터">
+      <Stage num="1">아처</Stage>
+      <Stage num="2">
+      </Stage>
+      <Stage num="3">
+      </Stage>
+      <Stage num="4">
+      </Stage>
+    </SubJob>
   </JobType>
   <JobType name="도적">
-    로그
-    
+    <firstStage>로그</firstStage>
   </JobType>
   <JobType name="해적">
-    해적
-    
+    <firstStage>해적</firstStage>
+    <SubJob name="캡틴">
+      <Stage num="1">해적</Stage>
+      <Stage num="2">건슬링거</Stage>
+      <Stage num="3">
+      </Stage>
+      <Stage num="4">
+      </Stage>
+    </SubJob>
   </JobType>
 </Jobs>

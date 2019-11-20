@@ -16,7 +16,9 @@ namespace WinformSkillEditor
 	{
 		string path = Application.StartupPath + "\\..\\..\\xml\\Jobs.xml";
 		XmlDocument jobInfoXml = new XmlDocument();
-		XmlNode root;
+		XmlNode root = null;
+		XmlNode currentJobTypeNode = null;
+		XmlNode currentSubJobNode = null;
 
 		Dictionary<int, string> firstJobDic = new Dictionary<int, string>();
 
@@ -58,6 +60,7 @@ namespace WinformSkillEditor
 			{
 				if (job.Equals(i.Attributes["name"].Value))
 				{
+					currentSubJobNode = i;
 					resultList = i.SelectNodes(StageNodeStr);
 				}
 			}
@@ -102,9 +105,14 @@ namespace WinformSkillEditor
 		{
 			StageSelectView.Items.Clear();
 
-			for(int i = 0; i< stageArr.Length; i++)
+			for(int i = 0; i < stageArr.Length; i++)
 			{
-				StageSelectView.Items.Add((i + 1) + " 차 : " + stageArr[i]);
+				StageSelectView.Items.Add(new MyListBoxItem(stageArr[i]));
+
+				if(stageArr[i].Length == 0)
+				{
+					break;
+				}
 			}
 		}
 
@@ -113,17 +121,16 @@ namespace WinformSkillEditor
 		
 			ListBox listBox = (ListBox)sender;
 
-			XmlNode currentJobTypeNode = null;
-
 			foreach (XmlNode i in root.SelectNodes("JobType"))
 			{
+
 				if (JobBox.SelectedItem.ToString().Equals(i.Attributes["name"].Value))
 				{
 					currentJobTypeNode = i;
 				}
 			}
 
-			if (currentJobTypeNode == null) { return; } // 불러오기 실패한 예외처리
+			if (currentJobTypeNode == null || listBox.SelectedItem.ToString().Length == 0) { return; } // 불러오기 실패한 예외처리
 
 			XmlNodeList stageData = GetStageList(currentJobTypeNode, listBox.SelectedItem.ToString());
 
@@ -171,18 +178,8 @@ namespace WinformSkillEditor
 			XmlAttribute newName = jobInfoXml.CreateAttribute("name");
 			newName.Value = addJobText;
 
-			// 1차 전직 직업은 계열이 같으면 다 같아서 미리 추가해주기
-			XmlNode newStageNode = jobInfoXml.CreateElement(StageNodeStr);
-
-			XmlAttribute newStageNum = jobInfoXml.CreateAttribute("num");
-			newStageNum.Value = "1";
-
-			newStageNode.InnerText = resultNode.InnerText.Trim();
-
-			newStageNode.Attributes.Append(newStageNum);
-		
 			newJobNode.Attributes.Append(newName);
-			newJobNode.AppendChild(newStageNode);
+			InitJobStage(newJobNode, resultNode.SelectNodes("firstStage")[0].InnerText.Trim());
 
 			resultNode.AppendChild(newJobNode);
 
@@ -191,9 +188,106 @@ namespace WinformSkillEditor
 			jobInfoXml.Save(path);
 		}
 
+		private void InitJobStage(XmlNode newJobNode, string firstStage)
+		{
+			for (int i = 1; i <= 4; i++)
+			{
+				XmlNode newStageNode = jobInfoXml.CreateElement(StageNodeStr);
+
+				XmlAttribute newStageNum = jobInfoXml.CreateAttribute("num");
+				newStageNum.Value = i.ToString();
+
+				// 1차 전직 직업은 계열이 같으면 다 같아서 미리 추가해주기
+				newStageNode.InnerText = i == 1 ? firstStage : "";
+
+				newStageNode.Attributes.Append(newStageNum);
+				newJobNode.AppendChild(newStageNode);
+
+			}
+
+		}
+
+		
 		private void btnAddJob_Click(object sender, EventArgs e)
 		{
 			AddSubJob();
+		}
+
+		private void StageSelectView_DrawItem(object sender, DrawItemEventArgs e)
+		{
+
+			if (e.Index == -1) return;
+			MyListBoxItem item = StageSelectView.Items[e.Index] as MyListBoxItem;
+
+			string msg;
+
+
+			if (item.Message.Length > 0)
+			{
+			
+				item.ItemColor = Color.Black;
+				msg = item.Message;
+
+			}
+			else
+			{
+				item.ItemColor = Color.Blue;
+				msg = "클릭해서 추가해주세요";
+			}
+
+			e.Graphics.DrawString(
+				msg,
+				StageSelectView.Font,
+				new SolidBrush(item.ItemColor),
+				0,
+				e.Index * StageSelectView.ItemHeight
+			);
+		}
+
+		private void StageSelectView_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			ListBox listBox = (ListBox)sender;
+
+			MyListBoxItem curItem = (MyListBoxItem)listBox.SelectedItem;
+
+			StageTextBox.Enabled = true;
+			btnStageModify.Enabled = true;
+			StageTextBox.Text = curItem.Message;
+			CurStageText.Text = (listBox.SelectedIndex + 1) + "차";
+
+		}
+
+		private void StageSelectView_NotSelected(object sender, EventArgs e)
+		{
+			//CurStageText.Text = "";
+		}
+
+		private void StageTextBox_TextChanged(object sender, EventArgs e)
+		{
+
+		}
+
+		private void btnStageModify_Click(object sender, EventArgs e)
+		{
+			btnStageModify.Enabled = true;
+
+			if(StageTextBox.TextLength == 0)
+			{
+				MessageBox.Show("수정할 직업이름을 입력해주세요");
+				return;
+			}
+
+			foreach (XmlNode i in currentSubJobNode.SelectNodes("Stage"))
+			{
+
+				if (StageSelectView.SelectedIndex == int.Parse(i.Attributes["num"].Value)-1)
+				{
+					i.InnerText = StageTextBox.Text;
+					break;
+				}
+			}
+
+			jobInfoXml.Save(path);
 		}
 	}
 
