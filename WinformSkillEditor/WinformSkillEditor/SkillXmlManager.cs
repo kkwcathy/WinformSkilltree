@@ -45,7 +45,13 @@ static class SkillXmlManager
 	static void CreateFile()
 	{
 		XmlNode docNode = _skillInfoXml.CreateXmlDeclaration("1.0", "UTF-8", null);
+
 		_skillInfoXml.AppendChild(docNode);
+		
+		//안씀
+		//_skillInfoXml.AppendChild(_skillInfoXml.CreateProcessingInstruction(
+		//"xml-stylesheet",
+		//"type='text/xsl' href='Show.xslt'"));
 
 		_rootNode = _skillInfoXml.CreateElement("job");
 

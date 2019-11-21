@@ -67,6 +67,7 @@
 			this.JobComboBox1 = new System.Windows.Forms.ComboBox();
 			this.TypeComboBox1 = new System.Windows.Forms.ComboBox();
 			this.tabPage3 = new System.Windows.Forms.TabPage();
+			this.BtnTransform = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
@@ -75,6 +76,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
 			this.groupBox1.SuspendLayout();
 			this.panel2.SuspendLayout();
+			this.tabPage3.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// JobBox
@@ -538,6 +540,7 @@
 			// 
 			// tabPage3
 			// 
+			this.tabPage3.Controls.Add(this.BtnTransform);
 			this.tabPage3.Location = new System.Drawing.Point(4, 25);
 			this.tabPage3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.tabPage3.Name = "tabPage3";
@@ -546,6 +549,16 @@
 			this.tabPage3.TabIndex = 2;
 			this.tabPage3.Text = "직업정보 조회";
 			this.tabPage3.UseVisualStyleBackColor = true;
+			// 
+			// BtnTransform
+			// 
+			this.BtnTransform.Location = new System.Drawing.Point(213, 153);
+			this.BtnTransform.Name = "BtnTransform";
+			this.BtnTransform.Size = new System.Drawing.Size(75, 23);
+			this.BtnTransform.TabIndex = 0;
+			this.BtnTransform.Text = "변형";
+			this.BtnTransform.UseVisualStyleBackColor = true;
+			this.BtnTransform.Click += new System.EventHandler(this.BtnTransform_Click);
 			// 
 			// MainForm
 			// 
@@ -569,6 +582,7 @@
 			this.groupBox1.PerformLayout();
 			this.panel2.ResumeLayout(false);
 			this.panel2.PerformLayout();
+			this.tabPage3.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -614,5 +628,6 @@
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.Label label13;
 		private System.Windows.Forms.NumericUpDown numericUpDown1;
+		private System.Windows.Forms.Button BtnTransform;
 	}
 }

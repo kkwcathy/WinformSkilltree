@@ -73,6 +73,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="xml\Jobs.xml" />
+    <Content Include="Show.xsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="html\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
