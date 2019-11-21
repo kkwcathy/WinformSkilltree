@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<job>
+  <name>위자드(얼음, 번개)</name>
+  <skill name="프리지ㅣ잉">
+    <explanation>렛잇궈렛잇궈</explanation>
+    <type>공격</type>
+    <master_level>5</master_level>
+  </skill>
+  <skill name="나는버프다">
+    <explanation>다 얼어버려라ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ</explanation>
+    <type>버프</type>
+    <master_level>3</master_level>
+  </skill>
+  <skill name="꽁꽁이">
+    <explanation>꽁꽁 꽁꽁</explanation>
+    <type>버프</type>
+    <master_level>3</master_level>
+  </skill>
+  <skill name="꽁꽁이2">
+    <explanation>ㅇㅁㄹㅇㄻㄹㅇㅁ</explanation>
+    <type>패시브</type>
+    <master_level>15</master_level>
+  </skill>
+  <skill name="흠">
+    <explanation>뭐하지</explanation>
+    <type>공격</type>
+    <master_level>1</master_level>
+  </skill>
+  <skill name="ㄷㄷㄷ">
+    <explanation>ㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷ</explanation>
+    <type>공격</type>
+    <master_level>30</master_level>
+  </skill>
+</job>

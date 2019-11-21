@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<job>
+  <name>검사</name>
+  <skill name="슬래쉬">
+    <explanation>칼을 멋지게 휘두른다</explanation>
+    <type>공격</type>
+    <master_level>10</master_level>
+  </skill>
+</job>

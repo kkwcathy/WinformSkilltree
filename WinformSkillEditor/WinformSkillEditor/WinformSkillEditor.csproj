@@ -48,6 +48,9 @@
     <Compile Include="Form\Tab\JobEditTab.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Tab\SkillEditTab.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="JobXmlManager.cs" />
     <Compile Include="Form\MainForm.cs">
       <SubType>Form</SubType>

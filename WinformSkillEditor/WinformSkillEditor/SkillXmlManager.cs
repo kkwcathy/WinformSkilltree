@@ -69,11 +69,11 @@ static class SkillXmlManager
 		{
 			// 해당 직업의 스킬 파일이 존재하지 않을 경우 파일 새로 생성
 			CreateFile();
-			Console.WriteLine("만들었다");
 			return;
 		}
 
-		Console.WriteLine("불러왔다");
+		_rootNode = _skillInfoXml.SelectNodes("job")[0];
+
 	}
 
 	public static void AddSkill(SkillInfo newSkill)
@@ -97,15 +97,37 @@ static class SkillXmlManager
 		skillNode.AppendChild(typeNode);
 		skillNode.AppendChild(levelNode);
 
-		_skillInfoXml.AppendChild(skillNode);
+		_rootNode.AppendChild(skillNode);
 		_skillInfoXml.Save(_savePath + _FileName);
+	}
+
+	public static bool ModifySkill(string skillName, SkillInfo newSkill)
+	{
+		XmlNode skillNode = null;
+
+		foreach(XmlNode i in _rootNode.SelectNodes(_SkillNodeStr))
+		{
+			if (i.Attributes[_NameNodeStr].Value.Equals(skillName))
+			{
+				skillNode = i;
+			}
+		}
+
+		if(skillNode == null) { return false; }
+
+		skillNode.Attributes[_NameNodeStr].Value = newSkill.Name;
+		skillNode.SelectNodes(_ExplanNodeStr)[0].InnerText = newSkill.Explanation;
+		skillNode.SelectNodes(_TypeNodeStr)[0].InnerText = newSkill.Type;
+		skillNode.SelectNodes(_LevelNodeStr)[0].InnerText = newSkill.MasterLevel.ToString();
+
+		return true;
 	}
 
 	public static List<string> GetSkillList()
 	{
 		List<string> skillList = new List<string>();
 
-		foreach (XmlNode i in _skillInfoXml.SelectNodes(_SkillNodeStr))
+		foreach (XmlNode i in _rootNode.SelectNodes(_SkillNodeStr))
 		{
 			skillList.Add(i.Attributes[_NameNodeStr].Value);
 		}
@@ -113,22 +135,30 @@ static class SkillXmlManager
 		return skillList;
 	}
 
-	public static SkillInfo GetSelectedSkillInfo(string skillName)
+	public static bool GetSelectedSkillInfo(string skillName, out SkillInfo skillInfo)
 	{
 		XmlNode curSkill = null;
 
-		foreach (XmlNode i in _skillInfoXml.SelectNodes(_SkillNodeStr))
+		foreach (XmlNode i in _rootNode.SelectNodes(_SkillNodeStr))
 		{
-			if (i.Attributes[_NameNodeStr].Equals(skillName))
+			if (i.Attributes[_NameNodeStr].Value.Equals(skillName))
 			{
 				curSkill = i;
 			}
 		}
 
-		return new SkillInfo(
+		if (curSkill == null)
+		{
+			skillInfo = new SkillInfo();
+			return false;
+		}
+
+		skillInfo = new SkillInfo(
 			skillName,
 			curSkill.SelectNodes(_ExplanNodeStr)[0].InnerText,
 			curSkill.SelectNodes(_TypeNodeStr)[0].InnerText,
 			int.Parse(curSkill.SelectNodes(_LevelNodeStr)[0].InnerText));
+
+		return true;
 	}
 }
