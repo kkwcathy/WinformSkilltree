@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 
@@ -18,6 +15,8 @@ static class JobXmlManager
 	const string _JobTypeNodeStr = "JobType";
 	const string _SubNodeStr = "SubJob";
 	const string _StageNodeStr = "Stage";
+
+	public static XmlDocument JobsXml { get; }
 
 	public static void Init()
 	{
@@ -153,5 +152,21 @@ static class JobXmlManager
 		return stageData;
 	}
 
+	public static string GetFileName(string type)
+	{
+		XmlNode jobTypeNode = null;
+
+		foreach(XmlNode i in _rootNode.SelectNodes(_JobTypeNodeStr))
+		{
+			if (i.Attributes["name"].Value.Equals(type))
+			{
+				jobTypeNode = i;
+			}
+		}
+
+		if(jobTypeNode == null) { return null; }
+
+		return jobTypeNode.SelectNodes("fileName")[0].InnerText;
+	}
 }
 

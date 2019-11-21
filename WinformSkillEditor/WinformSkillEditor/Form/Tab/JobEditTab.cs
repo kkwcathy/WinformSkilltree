@@ -1,25 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml;
 
 namespace WinformSkillEditor
 {
+	// 직업정보 편집 tab 부분만 분리한 partial class
 
 	public partial class MainForm : Form
 	{
-		public MainForm()
-		{
-			InitializeComponent();	
-		}
-
-		private void JobBox_SelectedIndexChanged(object sender, EventArgs e)
+		public void JobBox_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			ComboBox comboBox = (ComboBox)sender;
 
@@ -38,7 +28,7 @@ namespace WinformSkillEditor
 			UpdateJobSelectView();
 		}
 
-		private void UpdateJobSelectView()
+		public void UpdateJobSelectView()
 		{
 			List<string> jobitemList = JobXmlManager.GetSubJobData();
 
@@ -49,27 +39,27 @@ namespace WinformSkillEditor
 				JobSelectView.Items.Add(i);
 			}
 		}
-		
-		private void UpdateStageView()
+
+		public void UpdateStageView()
 		{
 			string[] stageArr = JobXmlManager.GetStageData();
 
 			StageSelectView.Items.Clear();
 
-			for(int i = 0; i < stageArr.Length; i++)
+			for (int i = 0; i < stageArr.Length; i++)
 			{
 				StageSelectView.Items.Add(new MyListBoxItem(stageArr[i]));
 
-				if(stageArr[i].Length == 0)
+				if (stageArr[i].Length == 0)
 				{
 					break;
 				}
 			}
 		}
 
-		private void JobSelectView_SelectedIndexChanged(object sender, EventArgs e)
+		public void JobSelectView_SelectedIndexChanged(object sender, EventArgs e)
 		{
-		
+
 			ListBox listBox = (ListBox)sender;
 
 			if (!JobXmlManager.SetCurSubJobNode(listBox.Text)) { return; }
@@ -83,8 +73,8 @@ namespace WinformSkillEditor
 
 			UpdateStageView();
 		}
-		
-		private void btnAddJob_Click(object sender, EventArgs e)
+
+		public void btnAddJob_Click(object sender, EventArgs e)
 		{
 			string addJobText = InputNewJob.Text.ToString();
 
@@ -103,7 +93,7 @@ namespace WinformSkillEditor
 			UpdateJobSelectView();
 		}
 
-		private void StageSelectView_DrawItem(object sender, DrawItemEventArgs e)
+		public void StageSelectView_DrawItem(object sender, DrawItemEventArgs e)
 		{
 
 			if (e.Index == -1) return;
@@ -114,7 +104,7 @@ namespace WinformSkillEditor
 
 			if (item.Message.Length > 0)
 			{
-			
+
 				item.ItemColor = Color.Black;
 				msg = item.Message;
 
@@ -134,15 +124,15 @@ namespace WinformSkillEditor
 			);
 		}
 
-		private void StageSelectView_SelectedIndexChanged(object sender, EventArgs e)
+		public void StageSelectView_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			ListBox listBox = (ListBox)sender;
 			MyListBoxItem curItem = (MyListBoxItem)listBox.SelectedItem;
 
-			if(curItem == null) { return; }
+			if (curItem == null) { return; }
 
 			string buttonText = curItem.Message.Length > 0 ? "수정" : "추가";
-			
+
 			StageTextBox.Enabled = true;
 			btnStageModify.Enabled = true;
 			btnStageModify.Text = buttonText;
@@ -151,16 +141,16 @@ namespace WinformSkillEditor
 
 		}
 
-		private void btnStageModify_Click(object sender, EventArgs e)
+		public void btnStageModify_Click(object sender, EventArgs e)
 		{
-			
-			if(StageTextBox.TextLength == 0)
+
+			if (StageTextBox.TextLength == 0)
 			{
 				MessageBox.Show("수정할 직업이름을 입력해주세요");
 				return;
 			}
 
-			if(!JobXmlManager.ModifyStage(StageSelectView.SelectedIndex + 1, StageTextBox.Text))
+			if (!JobXmlManager.ModifyStage(StageSelectView.SelectedIndex + 1, StageTextBox.Text))
 			{
 				MessageBox.Show("modify error");
 				return;
@@ -169,7 +159,7 @@ namespace WinformSkillEditor
 			UpdateStageView();
 		}
 
-		private void StagePanelClear()
+		public void StagePanelClear()
 		{
 			StageSelectView.Items.Clear();
 			StageSelectView.Enabled = false;
@@ -177,50 +167,7 @@ namespace WinformSkillEditor
 			btnStageModify.Enabled = false;
 			StageTextBox.Enabled = false;
 		}
-
-
-		/////////////////////////////분리예정: 스킬편집 페이지
-
-
-		//빼야함
-		private void tabPage2_Click(object sender, EventArgs e)
-		{
-			JobComboBox1.Enabled = false;
-			StageComboBox1.Enabled = false;
-		}
-
-		private void TypeComboBox1_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			JobXmlManager.SetCurJobTypeNode(TypeComboBox1.SelectedItem.ToString());
-
-			List<string> itemList = JobXmlManager.GetSubJobData();
-
-			JobComboBox1.Items.Clear();
-
-			foreach(var i in itemList)
-			{
-				JobComboBox1.Items.Add(i);
-			}
-
-			JobComboBox1.Enabled = true;
-		}
-
-		private void JobComboBox1_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			JobXmlManager.SetCurSubJobNode(JobComboBox1.SelectedItem.ToString());
-
-			string[] itemArray = JobXmlManager.GetStageData();
-
-			StageComboBox1.Items.Clear();
-
-			foreach (var i in itemArray)
-			{
-				if (i.Length == 0) { break; }
-
-				StageComboBox1.Items.Add(i);
-			}
-
-			StageComboBox1.Enabled = true;
-		}
 	}
 }
+
+
