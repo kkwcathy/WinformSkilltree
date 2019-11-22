@@ -27,7 +27,7 @@ namespace WinformSkillEditor
 
 			try
 			{
-				myXslTransform.Transform(Application.StartupPath + "\\..\\..\\xml\\" + targetFileName, Application.StartupPath + "\\..\\..\\html\\Result.html");
+				myXslTransform.Transform(Application.StartupPath + "\\..\\..\\xml\\" + targetFileName, Application.StartupPath + "\\..\\..\\Result.html");
 			}
 			catch (FileNotFoundException error)
 			{
