@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<job>
-  <name>건슬링거</name>
-  <skill name="총쏘기">
-    <explanation>총을 쏜다</explanation>
-    <type>공격</type>
-    <master_level>10</master_level>
-  </skill>
-</job>
