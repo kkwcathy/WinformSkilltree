@@ -105,7 +105,7 @@ namespace WinformSkillEditor
 
 		private void openLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			System.Diagnostics.Process.Start(Application.StartupPath + "\\..\\..\\html\\Result.html");
+			System.Diagnostics.Process.Start(Application.StartupPath + "\\..\\..\\Result.html");
 		}
 
 		private void panel3_Paint(object sender, PaintEventArgs e)
