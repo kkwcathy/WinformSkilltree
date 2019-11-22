@@ -7,31 +7,40 @@
   <xsl:template match="/">
     <html>
       <body>
-        <h2>직업정보</h2>
-        <table border="1">
-          <tr bgcolor="#9acd32">
-            <th>이름</th>
-            <th>설명</th>
-            <th>타입</th>
-            <th>레벨</th>
-          </tr>
-          <xsl:for-each select="job/skill">
-            <tr>
-              <td>
-                <xsl:value-of select="@name"/>
-              </td>
-              <td>
-                <xsl:value-of select="explanation"/>
-              </td>
-              <td>
-                <xsl:value-of select="type"/>
-              </td>
-              <td>
-                <xsl:value-of select="master_level"/>
-              </td>
+        <br></br>
+        <br></br>
+        <center>
+        <xsl:for-each select="job">
+        <h2>
+          <xsl:value-of select="name"/>
+        </h2>
+          <br></br>
+        </xsl:for-each>
+          <table border="1">
+            <tr bgcolor="#A0E0EA">
+              <th>스킬이름</th>
+              <th>설명</th>
+              <th>타입</th>
+              <th>마스터 레벨</th>
             </tr>
-          </xsl:for-each>
-        </table>
+            <xsl:for-each select="job/skill">
+              <tr>
+                <td>
+                  <xsl:value-of select="@name"/>
+                </td>
+                <td>
+                  <xsl:value-of select="explanation"/>
+                </td>
+                <td>
+                  <xsl:value-of select="type"/>
+                </td>
+                <td>
+                  <xsl:value-of select="master_level"/>
+                </td>
+              </tr>
+            </xsl:for-each>
+          </table>
+        </center>
       </body>
     </html>
   </xsl:template>

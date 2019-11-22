@@ -61,7 +61,7 @@ static class JobXmlManager
 		_curJobTypeNode.AppendChild(newJobNode);
 
 		_jobInfoXml.Save(_path);
-
+		
 		return true;
 	}
 	
@@ -80,7 +80,7 @@ static class JobXmlManager
 				return true;
 			}
 		}
-		
+
 		return false;
 	}
 

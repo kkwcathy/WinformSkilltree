@@ -58,22 +58,9 @@ namespace WinformSkillEditor
 		{
 			panel2.Visible = true;
 
-			StringBuilder fileName = new StringBuilder();
-
-			fileName.Append(JobXmlManager.GetFileName(TypeComboBox1.SelectedItem.ToString()));
-
-			if (StageComboBox1.SelectedIndex > 0)
-			{
-				fileName.Append("_");
-				fileName.Append((JobComboBox1.SelectedIndex + 1).ToString());
-				fileName.Append("_");
-				fileName.Append((StageComboBox1.SelectedIndex + 1).ToString());
-			}
-
-			fileName.Append(".xml");
-
 			SkillXmlManager._CurJobName = StageComboBox1.SelectedItem.ToString();
-			SkillXmlManager._FileName = fileName.ToString();
+			SkillXmlManager._FileName = 
+				GetFileName(TypeComboBox1.SelectedItem.ToString(), JobComboBox1.SelectedIndex, StageComboBox1.SelectedIndex);
 			SkillXmlManager.LoadFile();
 
 			UpdateSkillList();
@@ -101,6 +88,8 @@ namespace WinformSkillEditor
 
 			if (selected.Text.Length == 0) { return; }
 
+			//pictureBox1.Load(Application.StartupPath + "\\..\\..\\img\\default.png");
+			//pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
 			panel3.Visible = true;
 
 			SkillInfo curInfo;

@@ -22,8 +22,6 @@ struct SkillInfo
 
 static class SkillXmlManager
 {
-	
-
 	public static string _savePath = Application.StartupPath + "\\..\\..\\xml\\";
 	static XmlDocument _skillInfoXml = new XmlDocument();
 
@@ -38,20 +36,11 @@ static class SkillXmlManager
 	const string _TypeNodeStr = "type";
 	const string _LevelNodeStr = "master_level";
 
-	public static void Init()
-	{ 
-	}
-
 	static void CreateFile()
 	{
 		XmlNode docNode = _skillInfoXml.CreateXmlDeclaration("1.0", "UTF-8", null);
 
 		_skillInfoXml.AppendChild(docNode);
-		
-		//안씀
-		//_skillInfoXml.AppendChild(_skillInfoXml.CreateProcessingInstruction(
-		//"xml-stylesheet",
-		//"type='text/xsl' href='Show.xslt'"));
 
 		_rootNode = _skillInfoXml.CreateElement("job");
 

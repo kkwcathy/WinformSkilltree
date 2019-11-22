@@ -3,54 +3,14 @@
   <JobType name="전사">
     <firstStage>검사</firstStage>
     <fileName>Warrior</fileName>
-    <SubJob name="히어로">
-      <Stage num="1">검사</Stage>
-      <Stage num="2">파이터</Stage>
-      <Stage num="3">크루세이더</Stage>
-      <Stage num="4">히어로</Stage>
-    </SubJob>
-    <SubJob name="팔라딘">
-      <Stage num="1">검사</Stage>
-      <Stage num="2">
-      </Stage>
-      <Stage num="3">
-      </Stage>
-      <Stage num="4">
-      </Stage>
-    </SubJob>
   </JobType>
   <JobType name="마법사">
     <firstStage>매지션</firstStage>
     <fileName>Magician</fileName>
-    <SubJob name="아크메이지(썬,콜)">
-      <Stage num="1">매지션</Stage>
-      <Stage num="2">위자드(얼음, 번개)</Stage>
-      <Stage num="3">메이지(얼음, 번개)</Stage>
-      <Stage num="4">
-      </Stage>
-    </SubJob>
   </JobType>
   <JobType name="궁수">
     <firstStage>아처</firstStage>
     <fileName>Archer</fileName>
-    <SubJob name="보우마스터">
-      <Stage num="1">아처</Stage>
-      <Stage num="2">
-      </Stage>
-      <Stage num="3">
-      </Stage>
-      <Stage num="4">
-      </Stage>
-    </SubJob>
-    <SubJob name="신궁">
-      <Stage num="1">아처</Stage>
-      <Stage num="2">
-      </Stage>
-      <Stage num="3">
-      </Stage>
-      <Stage num="4">
-      </Stage>
-    </SubJob>
   </JobType>
   <JobType name="도적">
     <firstStage>로그</firstStage>
